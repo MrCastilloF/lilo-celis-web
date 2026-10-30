@@ -43,12 +43,19 @@ Todo el catálogo vive en **`js/products-data.js`**. Cada producto tiene:
   nombre: "Aro cuff dorado con cristales",
   categoria: "aretes",                // aretes | pulseras | conjuntos
   imagen: "images/aro-cuff-dorado-cristales.jpg",
+  precio: "$ 55.000",                 // visible en tarjeta y modal (null = "por consultar")
   alt: "Texto alternativo descriptivo (SEO)",   // obligatorio por accesibilidad
   descripcion: "Copia breve de marketing...",
   tags: ["dorado", "con piedras", "moderno"],
   disponible: true                    // estado inicial: true / false
 }
 ```
+
+> 💰 Los 69 precios fueron leídos de las etiquetas impresas en las fotos
+> ($ 25.000 – $ 98.000) y se muestran como texto propio de la ficha, por lo que
+> **nunca quedan ocultos** aunque la foto se recorte. El chip de categoría se
+> ubica arriba a la derecha para no tapar la etiqueta de precio de la foto
+> (siempre en la esquina inferior derecha).
 
 - Para **agregar un producto**: copia un bloque, cambia el `id`, coloca su foto
   en `images/` y listo. El filtro de categorías se genera solo.

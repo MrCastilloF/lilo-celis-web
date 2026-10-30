@@ -102,6 +102,9 @@
       </div>
       <div class="tarjeta-cuerpo">
         <h3>${esc(producto.nombre)}</h3>
+        ${producto.precio
+          ? `<p class="precio">Precio: <strong>${esc(producto.precio)}</strong></p>`
+          : `<p class="precio consultar">🏷️ Precio por consultar</p>`}
         <p class="descripcion">${esc(producto.descripcion)}</p>
         <div class="etiquetas-estilo">
           ${(producto.tags || []).map((t) => `<span class="etiqueta-estilo">${esc(t)}</span>`).join("")}
@@ -204,12 +207,23 @@
     modal.querySelector(".modal-nombre").textContent = producto.nombre;
     modal.querySelector(".modal-descripcion").textContent = producto.descripcion;
     modal.querySelector(".modal-categoria").textContent = producto.categoria;
+
+    const precioModal = modal.querySelector(".modal-precio");
+    if (producto.precio) {
+      precioModal.innerHTML = `Precio: <strong>${esc(producto.precio)}</strong>`;
+      precioModal.classList.remove("consultar");
+      precioModal.hidden = false;
+    } else {
+      precioModal.innerHTML = "🏷️ Precio por consultar";
+      precioModal.classList.add("consultar");
+      precioModal.hidden = false;
+    }
     modal.querySelector(".modal-estilos").innerHTML = (producto.tags || [])
       .map((t) => `<span class="etiqueta-estilo">${esc(t)}</span>`)
       .join("");
 
     const badge = modal.querySelector(".modal-badge");
-    badge.className = "badge " + (disponible ? "badge-disponible" : "badge-agotado");
+    badge.className = "modal-badge badge " + (disponible ? "badge-disponible" : "badge-agotado");
     badge.textContent = disponible ? "✓ Disponible" : "✕ Agotado";
 
     const aviso = modal.querySelector(".aviso-agotado");

@@ -331,6 +331,7 @@ header {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: right bottom; /* conserva la etiqueta de precio (esquina inferior derecha) */
   border-radius: 22px;
   box-shadow: var(--sombra-alta);
 }
@@ -340,8 +341,8 @@ header {
 
 .hero-chip {
   position: absolute;
-  bottom: 1.2rem;
-  left: -1.2rem;
+  bottom: -1.4rem;
+  left: 0.6rem;
   background: var(--blanco);
   border-radius: 18px;
   padding: 0.7rem 1.1rem;
@@ -486,11 +487,39 @@ section { padding: 4.5rem 0; }
 .badge-agotado { background: var(--rojo-claro); color: var(--rojo); }
 
 .badge-categoria {
-  top: auto; bottom: 0.9rem;
+  top: 0.9rem; bottom: auto;
   left: auto; right: 0.9rem;
   background: rgba(255, 255, 255, 0.85);
   color: var(--morado);
 }
+
+/* Precio siempre visible (nunca tapado por la foto ni por badges) */
+.precio {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  font-family: var(--fuente-titulo);
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--tinta-suave);
+}
+
+.precio strong {
+  font-size: 1.35rem;
+  font-weight: 800;
+  background: var(--gradiente);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.precio.consultar {
+  color: var(--morado-oscuro);
+  font-size: 0.95rem;
+}
+
+.modal-info .precio { font-size: 1.1rem; margin-top: -0.3rem; }
+.modal-info .precio strong { font-size: 1.7rem; }
 
 .tarjeta-cuerpo {
   padding: 1.2rem 1.3rem 1.4rem;
@@ -595,6 +624,7 @@ section { padding: 4.5rem 0; }
   box-shadow: var(--sombra-alta);
   aspect-ratio: 4 / 4.4;
   object-fit: cover;
+  object-position: right bottom;
   width: 100%;
 }
 
@@ -775,6 +805,7 @@ section { padding: 4.5rem 0; }
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: right bottom;
   min-height: 320px;
 }
 
